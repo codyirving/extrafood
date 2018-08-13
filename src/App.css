@@ -23,6 +23,95 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*********************/
+/* START GRID SYSTEM */
+/*********************/
+
+.row {
+  max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+/* Clearfix */
+.row::before,
+.row::after {
+  display: table;
+  content: "";
+}
+.row::after {
+  clear: both;
+}
+.col-2point4,
+.col-3,
+.col-4,
+.col-6,
+.col-12 {
+  float: left;
+  /* Gutters:
+   * Each column is padded by half-a-gutter on each side,
+   *
+   * Half a gutter is 10px, 10/960 (context) = 1.041666%
+   *
+   */
+  padding-left: 1.04166666%;
+  padding-right: 1.04166666%;
+}
+/* Mobile defaults */
+.col-2point4,
+.col-3,
+.col-4,
+.col-6,
+.col-12 {
+  width: 100%;
+}
+/* Non-mobile, grid */
+@media only screen and (min-width: 800px) {
+  /* 3 columns, 3/12 in % */
+  .col-2point4 {
+    width: 19%;
+  }
+  .col-3 {
+    width: 25%;
+  }
+  /* 4 columns */
+  .col-4 {
+    width: 33.33%;
+  }
+  /* 6 columns */
+  .col-6 {
+    width: 50%;
+  }
+  /* 12 columns */
+  .col-12 {
+    width: 100%;
+  }
+}
+/*******************/
+/* END GRID SYSTEM */
+/*******************/
+
+.listing {
+  background-color: antiquewhite;
+  margin-bottom: 10px;
+}
+.itemDescription {
+  background-color: cornflowerblue;
+}
+.dateExpires {
+  background-color: #fff;
+}
+.datePosted {
+  background-color: red;
+}
+.column-headings {
+  border-bottom: 1px solid black;
 }
