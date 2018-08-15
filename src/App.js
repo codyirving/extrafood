@@ -28,6 +28,7 @@ class Listing extends Component {
 
     const postData = (url = "", data = {}) => {
       // Default options are marked with *
+
       return fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, cors, *same-origin
@@ -42,15 +43,18 @@ class Listing extends Component {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       })
         .then(response => response.json()) // parses response to JSON
+        .then(this.props.onClick(this.props.listing._id))
         .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
     postData("http://localhost:3001/foodlistings/claim", payload)
-      .then(data => console.log(data)) // JSON from `response.json()` call
+      .then(data => console.log(data))
+      .then(this.props.onClick(this.props.listing._id)) // JSON from `response.json()` call
       .catch(error => console.error(error));
   };
 
   render() {
+    console.log("rendering listing");
     const { dateExpires, itemDescription, datePosted } = this.props.listing;
     return (
       //TODO Automatically filter expiredListings
@@ -95,24 +99,22 @@ class Listing extends Component {
                 {this.props.listing.listerContact.nameLast}
               </div>
             </div>
+
             <div className="claim-listing row">
               <button onClick={this.claimListing}>Claim this listing!</button>
             </div>
-            {this.state.showClaimDetails && (
-              <div>
-                <div className="claim-disclaimer row">
-                  {" "}
-                  By claiming this listing, you agree to the terms and
-                  conditions{" "}
-                </div>
-                <div className="agree-to-conditions">
-                  <form>
-                    <input type="checkbox" />
-                    <button onClick={this.postClaim}>Claim it!</button>
-                  </form>
-                </div>
-              </div>
-            )}
+          </div>
+        )}
+
+        {this.state.showClaimDetails && (
+          <div className="row">
+            <div className="agree-to-conditions">
+              <form>
+                By claiming this listing, you agree to the terms and conditions{" "}
+                <input type="checkbox" />
+                <button onClick={this.postClaim}>Claim it!</button>
+              </form>
+            </div>
           </div>
         )}
       </div>
@@ -120,12 +122,56 @@ class Listing extends Component {
   }
 }
 
-const Listings = ({ listings }) => {
-  console.log("listing! " + JSON.stringify(listings));
-  return listings.map(listing => (
-    <Listing listing={listing} key={listing._id} />
-  ));
-};
+class Listings extends Component {
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    newFilteredListings: []
+  };
+  componentDidMount() {
+    //console.log(this.props.listings);
+    //const filteredListings = this.props.listings;
+    // console.log("filtered: " + filteredListings);
+    //this.props.onFilter(newFilteredListings);
+    this.setState({ newFilteredListings: this.tempList });
+  }
+
+  handleClaimClick = _id => {
+    console.log("handling claim click");
+
+    // const newFilteredListings = this.props.listings
+    //   .filter(listing => listing.claimed !== true)
+    //   .map(listing => (
+    //     <Listing
+    //       listing={listing}
+    //       key={listing._id}
+    //       onClick={this.handleClaimClick}
+    //     />
+    //   ));
+    // this.props.onFilter(newFilteredListings);
+
+    // this.setState({ newFilteredListings: newFilteredListings });
+    this.props.onClaimed();
+  };
+  tempList = {};
+  render() {
+    console.log("first listings prop: " + JSON.stringify(this.props));
+    const { listings } = this.props;
+    const newFilteredListings = listings
+      .filter(listing => listing.claimed !== true)
+      .map(listing => (
+        <Listing
+          listing={listing}
+          key={listing._id}
+          onClick={this.handleClaimClick}
+        />
+      ));
+    console.log("first filter and map: " + newFilteredListings);
+    this.tempList = newFilteredListings;
+    return newFilteredListings.length > 0 ? newFilteredListings : null;
+  }
+}
 
 class SearchListings extends Component {
   constructor(props) {
@@ -185,6 +231,7 @@ class App extends Component {
     console.log("prevState", prevState);
   }
   refreshData = () => {
+    console.log("REFRESHING DATA");
     fetch("http://localhost:3001/foodlistings/")
       .then(response => response.json())
       .then(data => this.setState({ listings: data, filteredListings: data }));
@@ -199,7 +246,24 @@ class App extends Component {
     });
     this.setState({ filteredListings: filteredList });
   };
+  handleClaimed = _id => {
+    const updatedListing = this.state.listings
+      .filter(listing => listing._id === _id)
+      .map(listing => (listing.claimed = true));
+    const listingIndex = this.state.listings.findIndex(
+      listing => listing._id === _id
+    );
+    const updatedList = [
+      ...this.state.listings.slice(0, listingIndex),
+      updatedListing,
+      ...this.state.listing.slice(listingIndex + 1)
+    ];
 
+    this.setState({ filteredListings: updatedList });
+  };
+  handleFilter = newFilteredListings => {
+    this.setState({ filteredListings: newFilteredListings });
+  };
   render() {
     console.log("render: " + this.state.filterWords);
     return (
@@ -212,6 +276,8 @@ class App extends Component {
           <Listings
             listings={this.state.filteredListings}
             key={this.state.filteredListings._id}
+            onClaimed={this.refreshData}
+            onFilter={this.handleFilter}
           />
         </main>
       </React.Fragment>
