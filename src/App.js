@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-
+import Redux from "react-redux";
 import NavBar from "./components/navbar";
 import "./App.css";
-
+import { connect } from "react-redux";
 import { Badge } from "react-bootstrap";
+import DayPicker from "react-day-picker";
+import "react-day-picker/lib/style.css";
 
 class Listing extends Component {
   state = {
@@ -121,7 +123,6 @@ class Listing extends Component {
     );
   }
 }
-
 class Listings extends Component {
   constructor(props) {
     super(props);
@@ -172,7 +173,6 @@ class Listings extends Component {
     return newFilteredListings.length > 0 ? newFilteredListings : null;
   }
 }
-
 class SearchListings extends Component {
   constructor(props) {
     super(props);
@@ -207,7 +207,106 @@ class RefreshData extends Component {
     );
   }
 }
-class App extends Component {
+
+class NewListing extends Component {
+  state = {
+    selectedExpireDay: false
+  };
+  constructor(props) {
+    super(props);
+    this.handleExpiresClick = this.handleExpiresClick.bind(this);
+    this.handleAvailableClick = this.handleAvailableClick.bind(this);
+  }
+  handleExpiresClick(day) {
+    console.log("day: " + day);
+    this.setState({ selectedExpireDay: day });
+  }
+  handleAvailableClick(day) {
+    console.log("day: " + day);
+    this.setState({ selectedAvailableDay: day });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <form>
+          <div className="description row">
+            <label for="food-description" className="food-description-label">
+              Food Description
+            </label>
+            <textarea
+              type="textarea"
+              className="food-description-input"
+              name="food-description"
+            />
+          </div>
+          <br />
+          <div className="pickup-notes row">
+            <label for="pickup-notes" className="pickup-notes-label">
+              Pickup Notes
+            </label>
+            <textarea
+              type="textarea"
+              className="pickup-notes-input"
+              name="pick-notes"
+            />
+          </div>
+          <div className="date-pickers row">
+            <div className="col-6">
+              <label
+                for="food-expiration-date"
+                className="food-expiration-label"
+              >
+                Expiration Date
+              </label>
+              <input
+                type="textbox"
+                className="food-expiration-date-input"
+                name="food-expiration-date"
+                value={
+                  this.state.selectedExpireDay
+                    ? this.state.selectedExpireDay.toLocaleDateString()
+                    : "Select Expiration Date"
+                }
+              />
+              <DayPicker onDayClick={this.handleExpiresClick} />
+            </div>
+
+            <div className="col-6">
+              <label for="food-available-date" className="food-available-label">
+                Available Date
+              </label>
+              <input
+                type="textbox"
+                className="food-available-date-input"
+                name="food-available-date"
+                value={
+                  this.state.selectedAvailableDay
+                    ? this.state.selectedAvailableDay.toLocaleDateString()
+                    : "Select Available Date"
+                }
+              />
+              <DayPicker onDayClick={this.handleAvailableClick} />
+            </div>
+          </div>
+          <br />
+
+          <button className="btn btn-default">POST LISTING</button>
+        </form>
+      </div>
+    );
+  }
+}
+class ListFood extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <NewListing />
+      </React.Fragment>
+    );
+  }
+}
+class ClaimFood extends Component {
   state = {
     filterWords: ["tomatoes"],
     listings: [],
@@ -246,43 +345,58 @@ class App extends Component {
     });
     this.setState({ filteredListings: filteredList });
   };
-  handleClaimed = _id => {
-    const updatedListing = this.state.listings
-      .filter(listing => listing._id === _id)
-      .map(listing => (listing.claimed = true));
-    const listingIndex = this.state.listings.findIndex(
-      listing => listing._id === _id
-    );
-    const updatedList = [
-      ...this.state.listings.slice(0, listingIndex),
-      updatedListing,
-      ...this.state.listing.slice(listingIndex + 1)
-    ];
+  // handleClaimed = _id => {
+  //   const updatedListing = this.state.listings
+  //     .filter(listing => listing._id === _id)
+  //     .map(listing => (listing.claimed = true));
+  //   const listingIndex = this.state.listings.findIndex(
+  //     listing => listing._id === _id
+  //   );
+  //   const updatedList = [
+  //     ...this.state.listings.slice(0, listingIndex),
+  //     updatedListing,
+  //     ...this.state.listing.slice(listingIndex + 1)
+  //   ];
 
-    this.setState({ filteredListings: updatedList });
-  };
+  //   this.setState({ filteredListings: updatedList });
+  // };
   handleFilter = newFilteredListings => {
     this.setState({ filteredListings: newFilteredListings });
   };
+
   render() {
-    console.log("render: " + this.state.filterWords);
     return (
       <React.Fragment>
-        <NavBar numberOfItems={this.state.filteredListings.length} />
-        <main className="container">
-          <SearchListings onClick={this.handleSearch} />
-          <RefreshData onClick={this.refreshData} />
-          <Badge>42</Badge>
-          <Listings
-            listings={this.state.filteredListings}
-            key={this.state.filteredListings._id}
-            onClaimed={this.refreshData}
-            onFilter={this.handleFilter}
-          />
-        </main>
+        <SearchListings onClick={this.handleSearch} />
+        <RefreshData onClick={this.refreshData} />
+        <Badge>42</Badge>
+        <Listings
+          listings={this.state.filteredListings}
+          key={this.state.filteredListings._id}
+          onClaimed={this.refreshData}
+          onFilter={this.handleFilter}
+        />
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export function App(props) {
+  // state = {
+  //   togglePage: true
+  // };
+  // togglePage = () => {
+  //   this.setState({ togglePage: !this.state.togglePage });
+  // };
+
+  return (
+    <React.Fragment>
+      <NavBar />
+      <main className="container" />
+      {props.togglePage && <ClaimFood />}
+      {!props.togglePage && <ListFood />}
+    </React.Fragment>
+  );
+}
+const mapStateToProps = state => ({ togglePage: state.togglePage });
+export default connect(mapStateToProps)(App);

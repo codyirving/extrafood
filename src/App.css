@@ -115,3 +115,17 @@
 .column-label {
   border-bottom: 1px solid black;
 }
+.food-available-date-input {
+}
+.food-expires-date-input {
+}
+.food-description-input {
+  height: 200px;
+  width: 100%;
+  word-wrap: normal;
+}
+.pickup-notes-input {
+  height: 200px;
+  width: 100%;
+  word-wrap: normal;
+}
