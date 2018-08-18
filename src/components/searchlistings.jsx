@@ -12,9 +12,8 @@ class SearchListings extends Component {
     console.log("handling change " + e.target.value);
     const searchInput = e.target.value;
 
-    this.props
-      .dispatch(updateSearchInput(searchInput))
-      .then(this.handleSearch(searchInput));
+    this.props.dispatch(updateSearchInput(searchInput));
+    this.handleSearch(searchInput);
 
     // this.setState({ searchInput: e.target.value }, () =>
     //   this.props.onClick(this.state.input)
@@ -24,16 +23,14 @@ class SearchListings extends Component {
   handleSearch = searchInput => {
     console.log("handle searchInput: " + JSON.stringify(store.getState()));
 
-    if (store.getState().listing) {
-      const filteredList = store.getState().listings.filter(listing => {
-        return (
-          listing.itemDescription.includes(searchInput) === true &&
-          listing.itemDescription
-        );
-      });
-
-      this.props.dispatch(updateFilteredList(filteredList));
-    }
+    const filteredList = this.props.listings.filter(listing => {
+      return (
+        listing.itemDescription.includes(searchInput) === true &&
+        listing.itemDescription
+      );
+    });
+    console.log("filterListLength", filteredList.length);
+    this.props.dispatch(updateFilteredList(filteredList));
   };
 
   // handleSearch = input => {
@@ -54,7 +51,7 @@ class SearchListings extends Component {
     return (
       <div>
         <input type="textbox" name="input" onChange={this.handleChange} />
-        <button onClick={() => this.handleSearch(this.state.input)}>
+        <button onClick={() => this.handleSearch(this.props.searchInput)}>
           Search
         </button>
       </div>
@@ -62,5 +59,9 @@ class SearchListings extends Component {
   }
 }
 
-const MapStateToProps = state => ({ searchInput: state.searchInput });
+const MapStateToProps = state => ({
+  filteredListings: state.filteredListings,
+  listings: state.listings,
+  searchInput: state.searchInput
+});
 export default connect(MapStateToProps)(SearchListings);

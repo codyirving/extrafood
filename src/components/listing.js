@@ -5,53 +5,30 @@ import { connect } from "react-redux";
 import {
   claimListing,
   refreshData,
-  toggleInterestedSection
+  toggleInterestedSection,
+  refData
 } from "../actions/index";
 
 export class Listing extends Component {
+  state = {
+    showInterestedSection: false,
+    showClaimDetails: false
+  };
   moreInfo = () => {
     console.log(this.props.listing);
     //this.setState({ showDetails: !this.state.showInterestedSection });
-    this.props.dispatch(toggleInterestedSection());
+    this.setState({ showInterestedSection: !this.state.showInterestedSection });
+    //this.props.dispatch(toggleInterestedSection(this.props.listing));
   };
   claimListing = e => {
     console.log("claiming listing");
     //this.setState({ showClaimDetails: !this.state.showClaimDetails });
-    this.props.dispatch(claimListing(this.props.listing._id));
+    //this.props.dispatch(claimListing(this.props.listing._id));
+    this.setState({ showClaimDetails: !this.state.showClaimDetails });
   };
   postClaim = e => {
     e.preventDefault();
-    const payload = {
-      _id: this.props.listing._id,
-      claimed: "true",
-      claimedDate: new Date()
-    };
-
-    const postData = (url = "", data = {}) => {
-      // Default options are marked with *
-
-      return fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, same-origin, *omit
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-          // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        redirect: "follow", // manual, *follow, error
-        referrer: "no-referrer", // no-referrer, *client
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-      })
-        .then(response => response.json()) // parses response to JSON
-        .then(this.props.onClick(this.props.listing._id))
-        .catch(error => console.error(`Fetch Error =\n`, error));
-    };
-
-    postData("http://localhost:3001/foodlistings/claim", payload)
-      .then(data => console.log(data))
-      .then(this.props.dispatch(toggleInterestedSection)) // JSON from `response.json()` call
-      .catch(error => console.error(error));
+    this.props.dispatch(claimListing(this.props.listing._id));
   };
 
   componentDidMount() {
@@ -93,7 +70,7 @@ export class Listing extends Component {
           </div>
         </div>
 
-        {this.props.showInterestedSection && (
+        {this.state.showInterestedSection && (
           <div>
             <div className="row moreInfo">
               <div className="pickupLocation col-3">
@@ -119,7 +96,7 @@ export class Listing extends Component {
           </div>
         )}
 
-        {this.props.showClaimDetails && (
+        {this.state.showClaimDetails && (
           <div className="row">
             <div className="agree-to-conditions">
               <form>

@@ -10,15 +10,15 @@ export class NavBar extends Component {
   render() {
     return (
       <nav>
-        {this.props.toggleButton && (
+        {this.props.togglePage && (
           <button onClick={e => this.onClick(e)}>Click to List Food</button>
         )}
-        {!this.props.toggleButton && (
+        {!this.props.togglePage && (
           <button onClick={e => this.onClick(e)}>Click to Claim Food</button>
         )}
       </nav>
     );
   }
 }
-const mapStateToProps = state => ({ toggleButton: state.toggleButton });
+const mapStateToProps = state => ({ togglePage: state.togglePage });
 export default connect(mapStateToProps)(NavBar);

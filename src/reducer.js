@@ -2,7 +2,6 @@ import {
   TOGGLE_INTERESTED_SECTION,
   TOGGLE_MAIN_PAGE,
   REFRESH_DATA,
-  CLAIM_LISTING,
   UPDATE_SEARCH_INPUT,
   UPDATE_FILTERED_LIST,
   APPLY_CLAIMED_FILTER
@@ -30,15 +29,10 @@ export default (state = initialState, action) => {
       filteredListings: action.newData
     });
   }
-  if (action.type === CLAIM_LISTING) {
-    console.log("claimling listing reducer: ");
-    return Object.assign({}, state, {
-      showClaimDetails: !state.showClaimDetails
-    });
-  }
+
   if (action.type === TOGGLE_INTERESTED_SECTION) {
     return Object.assign({}, state, {
-      showInterestedSection: !state.showInterestedSection
+      listing: { showInterestedSection: !action.listing.showInterestedSection }
     });
   }
 
