@@ -19,6 +19,7 @@ export function refData() {
     console.log("getState before refData() : " + JSON.stringify(getState()));
     let newData;
     let response = [];
+    console.log("access toke: " + getAccessToken());
     fetch("http://localhost:3001/foodlistings/", {
       method: "GET",
       headers: {

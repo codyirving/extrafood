@@ -17,7 +17,7 @@ export class NavBar extends Component {
         {!this.props.togglePage && (
           <button onClick={e => this.onClick(e)}>Click to Claim Food</button>
         )}
-        {console.log("is logged in?: " + isLoggedIn())}
+
         {isLoggedIn() ? (
           <button className="btn btn-danger log" onClick={() => logout()}>
             Log out{" "}

@@ -6,7 +6,7 @@
     "auth0-js": "^9.7.3",
     "jwt-decode": "^2.2.0",
     "react": "^16.4.2",
-    "react-bootstrap": "^0.32.1",
+    "react-bootstrap": "^0.32.3",
     "react-datepicker": "^1.6.0",
     "react-day-picker": "^7.1.10",
     "react-dom": "^16.4.2",
@@ -25,8 +25,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "eslint": "^5.3.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-react": "^7.10.0"
+    "eslint": "^5.4.0",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-react": "^7.11.1"
   }
 }

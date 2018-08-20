@@ -76,7 +76,10 @@ export function isLoggedIn() {
 }
 
 function getTokenExpirationDate(encodedToken) {
-  const token = decode(encodedToken);
+  let token;
+  if (encodedToken) {
+    token = decode(encodedToken);
+  }
   if (!token.exp) {
     return null;
   }

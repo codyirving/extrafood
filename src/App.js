@@ -20,9 +20,6 @@ export class App extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <Router>
-          <Route path="/callback" component={Callback} />
-        </Router>
         <main className="container" />
         {this.props.togglePage && <ClaimFood />}
         {!this.props.togglePage && <ListFood />}
