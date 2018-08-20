@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
     return Object.assign({}, state, { togglePage: !state.togglePage });
   }
   if (action.type === REFRESH_DATA) {
-    console.log("Refreshing data: " + " ACtion: " + JSON.stringify(action));
+    console.log("Refreshing data: " + " Action: " + JSON.stringify(action));
     return Object.assign({}, state, {
       listings: action.newData,
       filteredListings: action.newData

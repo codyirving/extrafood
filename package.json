@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "auth0-js": "^9.7.3",
+    "jwt-decode": "^2.2.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.1",
     "react-datepicker": "^1.6.0",
@@ -10,6 +12,8 @@
     "react-dom": "^16.4.2",
     "react-moment": "^0.7.9",
     "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.4.0-alpha.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"

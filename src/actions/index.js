@@ -1,5 +1,6 @@
 import React from "react";
 import Listing from "../components/listing";
+import { getAccessToken } from "../utils/AuthService";
 export const TOGGLE_MAIN_PAGE = "TOGGLE_MAIN_PAGE";
 export const toggleMainPage = () => ({
   type: TOGGLE_MAIN_PAGE
@@ -18,7 +19,15 @@ export function refData() {
     console.log("getState before refData() : " + JSON.stringify(getState()));
     let newData;
     let response = [];
-    fetch("http://localhost:3001/foodlistings/")
+    fetch("http://localhost:3001/foodlistings/", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      mode: "cors", // no-cors, cors, *same-origin
+      credentials: "same-origin"
+    })
       .then(response => response.json())
       .then(data => {
         console.log("data!", data);
@@ -26,7 +35,10 @@ export function refData() {
       })
       .then(
         console.log("getState after refData() : " + JSON.stringify(getState()))
-      );
+      )
+      .catch(error => {
+        console.log("error: " + error);
+      });
   };
 }
 export const APPLY_CLAIMED_FILTER = "APPLY_CLAIMED_FILTER";
