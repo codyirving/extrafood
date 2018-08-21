@@ -31,8 +31,10 @@ export class NewListing extends Component {
 
   submitNewListing(e) {
     e.preventDefault();
-    console.log(this.state);
-    this.props.dispatch(postNewListing(this.state));
+    //console.log(this.state);
+    this.props
+      .dispatch(postNewListing(this.state))
+      .then((window.location = "/"));
   }
 
   handleInputChange(event) {
@@ -56,7 +58,10 @@ export class NewListing extends Component {
       <div className="row">
         <form>
           <div className="description row">
-            <label for="food-description" className="food-description-label">
+            <label
+              htmlFor="food-description"
+              className="food-description-label"
+            >
               Food Description
             </label>
             <textarea
@@ -69,7 +74,7 @@ export class NewListing extends Component {
           </div>
           <br />
           <div className="pickup-notes row">
-            <label for="pickup-notes" className="pickup-notes-label">
+            <label htmlFor="pickup-notes" className="pickup-notes-label">
               Extra Pickup Notes
             </label>
             <textarea
@@ -81,7 +86,10 @@ export class NewListing extends Component {
           </div>
           <div className="date-pickers row">
             <div className="col-6">
-              <label for="food-available-date" className="food-available-label">
+              <label
+                htmlFor="food-available-date"
+                className="food-available-label"
+              >
                 Available Date
               </label>
               <input
@@ -99,7 +107,7 @@ export class NewListing extends Component {
             </div>
             <div className="col-6">
               <label
-                for="food-expiration-date"
+                htmlFor="food-expiration-date"
                 className="food-expiration-label"
               >
                 Expiration Date

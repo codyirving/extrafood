@@ -31,12 +31,8 @@ export function refData() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("data!", data);
         dispatch(refreshData(data));
       })
-      .then(
-        console.log("getState after refData() : " + JSON.stringify(getState()))
-      )
       .catch(error => {
         console.log("error: " + error);
       });
@@ -79,13 +75,12 @@ export function claimListing(id) {
 
       return fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, same-origin, *omit
         headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
           "Content-Type": "application/json; charset=utf-8"
-          // "Content-Type": "application/x-www-form-urlencoded",
         },
+        mode: "cors", // no-cors, cors, *same-origin
+        credentials: "same-origin",
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
         body: JSON.stringify(data) // body data type must match "Content-Type" header
@@ -94,7 +89,7 @@ export function claimListing(id) {
         .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    postData("http://localhost:3001/foodlistings/claim", payload)
+    return postData("http://localhost:3001/foodlistings/claim", payload)
       .then(data => dispatch(refData()))
       .catch(error => console.error(error));
   };
@@ -122,8 +117,8 @@ export function postNewListing(newListing) {
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "same-origin", // include, same-origin, *omit
         headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
           "Content-Type": "application/json; charset=utf-8"
-          // "Content-Type": "application/x-www-form-urlencoded",
         },
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
@@ -133,7 +128,7 @@ export function postNewListing(newListing) {
         .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    postData("http://localhost:3001/foodlistings/", payload)
+    return postData("http://localhost:3001/foodlistings/", payload)
       .then(data => dispatch(refData()))
       .catch(error => console.error(error));
   };

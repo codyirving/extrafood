@@ -25,7 +25,9 @@ class SearchListings extends Component {
 
     const filteredList = this.props.listings.filter(listing => {
       return (
-        listing.itemDescription.includes(searchInput) === true &&
+        listing.itemDescription
+          .toUpperCase()
+          .includes(searchInput.toUpperCase()) === true &&
         listing.itemDescription
       );
     });

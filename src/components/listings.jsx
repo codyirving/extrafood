@@ -47,7 +47,7 @@ export class Listings extends Component {
 
   componentWillUpdate() {
     console.log("component will update");
-    console.log("will update props: " + JSON.stringify(this.props));
+    //console.log("will update props: " + JSON.stringify(this.props));
   }
   render() {
     // const newFilteredListings = [];

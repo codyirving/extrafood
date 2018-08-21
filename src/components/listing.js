@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Redux from "react-redux";
 import { connect } from "react-redux";
-
+import { getAccessToken } from "../utils/AuthService";
 import {
   claimListing,
   refreshData,
@@ -29,29 +29,42 @@ export class Listing extends Component {
   postClaim = async e => {
     e.preventDefault();
     if (await this.checkClaim(this.props.listing._id)) {
-      this.props.dispatch(claimListing(this.props.listing._id));
+      this.props
+        .dispatch(claimListing(this.props.listing._id))
+        .then(alert("Success!"));
     } else {
       alert("oh no, this listing has already been claimed :(");
     }
   };
   async checkClaim(id) {
-    let claimCheck = await fetch("http://localhost:3001/foodlistings/")
+    let claimCheck = await fetch("http://localhost:3001/foodlistings/", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      mode: "cors", // no-cors, cors, *same-origin
+      credentials: "same-origin"
+    })
       .then(response => response.json())
       .then(data => {
         console.log("data!", data);
         return data;
-      });
-    let currentClaim = claimCheck.filter(listing => listing._id === id);
-    console.log("claimed? " + JSON.stringify(currentClaim[0].claimed));
-    if (currentClaim[0].claimed === false) return true;
-    else return false;
+      })
+      .catch(err => console.log("Uh Oh..." + err));
+    if (claimCheck) {
+      let currentClaim = claimCheck.filter(listing => listing._id === id);
+      console.log("claimed? " + JSON.stringify(currentClaim[0].claimed));
+      if (currentClaim[0].claimed === false) return true;
+      else return false;
+    } else return false;
   }
   componentDidMount() {
     console.log("listing did mount");
     console.log(this.props);
   }
   render() {
-    console.log("rendering listing with props: " + JSON.stringify(this.props));
+    //console.log("rendering listing with props: " + JSON.stringify(this.props));
     //const { dateExpires, itemDescription, datePosted } = this.props.listing;
     return (
       //TODO Automatically filter expiredListings
