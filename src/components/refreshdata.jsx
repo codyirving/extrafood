@@ -9,7 +9,7 @@ export class RefreshData extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="row">
         <button onClick={e => this.onClick(e)}>REFRESH LISTINGS</button>
       </div>
     );

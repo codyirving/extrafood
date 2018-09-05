@@ -4,6 +4,8 @@ import NavBar from "./components/navbar";
 import ClaimFood from "./components/claimfood";
 import ListFood from "./components/listfood";
 import Callback from "./components/Callback";
+import Welcome from "./components/welcome.jsx";
+import { isLoggedIn } from "./utils/AuthService";
 import "./App.css";
 import { connect } from "react-redux";
 
@@ -20,9 +22,10 @@ export class App extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <main className="container" />
-        {this.props.togglePage && <ClaimFood />}
-        {!this.props.togglePage && <ListFood />}
+        {!isLoggedIn() && <Welcome />}
+        {isLoggedIn() && <main className="container" />}
+        {isLoggedIn() && this.props.togglePage && <ClaimFood />}
+        {isLoggedIn() && !this.props.togglePage && <ListFood />}
       </React.Fragment>
     );
   }

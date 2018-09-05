@@ -11,22 +11,32 @@ export class NavBar extends Component {
   render() {
     return (
       <nav>
-        {this.props.togglePage && (
-          <button onClick={e => this.onClick(e)}>Click to List Food</button>
-        )}
-        {!this.props.togglePage && (
-          <button onClick={e => this.onClick(e)}>Click to Claim Food</button>
-        )}
-
-        {isLoggedIn() ? (
-          <button className="btn btn-danger log" onClick={() => logout()}>
-            Log out{" "}
-          </button>
-        ) : (
-          <button className="btn btn-info log" onClick={() => login()}>
-            Log In
-          </button>
-        )}
+        <div className="row">
+          {isLoggedIn() &&
+            this.props.togglePage && (
+              <button onClick={e => this.onClick(e)}>Click to List Food</button>
+            )}
+          {isLoggedIn() &&
+            !this.props.togglePage && (
+              <button onClick={e => this.onClick(e)}>
+                Click to Claim Food
+              </button>
+            )}
+        </div>
+        <div className="row login-row">
+          {isLoggedIn() ? (
+            <button
+              className="btn btn-danger log"
+              onClick={() => logout().then(this.props.history.push("/"))}
+            >
+              Log out{" "}
+            </button>
+          ) : (
+            <button className="btn btn-info log" onClick={() => login()}>
+              Log In
+            </button>
+          )}
+        </div>
       </nav>
     );
   }

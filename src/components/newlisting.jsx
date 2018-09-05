@@ -96,6 +96,7 @@ export class NewListing extends Component {
                 type="textbox"
                 className="food-available-date-input"
                 name="dateAvailable"
+                disabled
                 value={
                   this.state.dateAvailable
                     ? this.state.dateAvailable.toLocaleDateString()
@@ -116,6 +117,7 @@ export class NewListing extends Component {
                 type="textbox"
                 className="food-expiration-date-input"
                 name="dateExpires"
+                disabled
                 value={
                   this.state.dateExpires
                     ? this.state.dateExpires.toLocaleDateString()

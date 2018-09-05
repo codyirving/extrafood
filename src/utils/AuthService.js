@@ -1,6 +1,7 @@
 import decode from "jwt-decode";
 
 import auth0 from "auth0-js";
+
 const ID_TOKEN_KEY = "id_token";
 const ACCESS_TOKEN_KEY = "access_token";
 
@@ -27,7 +28,7 @@ export function login() {
 export function logout() {
   clearIdToken();
   clearAccessToken();
-  //history.push("/");
+  window.location = "/";
 }
 
 export function requireAuth(nextState, replace) {

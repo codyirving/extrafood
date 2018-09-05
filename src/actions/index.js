@@ -1,5 +1,6 @@
 import React from "react";
 import Listing from "../components/listing";
+
 import { getAccessToken } from "../utils/AuthService";
 export const TOGGLE_MAIN_PAGE = "TOGGLE_MAIN_PAGE";
 export const toggleMainPage = () => ({
@@ -13,6 +14,7 @@ export const refreshData = newData => {
     newData
   };
 };
+
 export function refData() {
   return (dispatch, getState) => {
     //let newData = [];
