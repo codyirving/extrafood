@@ -4,6 +4,8 @@ import DayPicker from "react-day-picker";
 import { postNewListing } from "../actions/index";
 export class NewListing extends Component {
   state = {
+    userName: "",
+    userEmail: "",
     itemDescription: "",
     listerExtraNotes: "",
     dateAvailable: "",
@@ -32,9 +34,11 @@ export class NewListing extends Component {
   submitNewListing(e) {
     e.preventDefault();
     //console.log(this.state);
-    this.props
-      .dispatch(postNewListing(this.state))
-      .then((window.location = "/"));
+    this.state.itemDescription && this.state.pickupLocation
+      ? this.props
+          .dispatch(postNewListing(this.state))
+          .then((window.location = "/"))
+      : alert("Please fill in required fields");
   }
 
   handleInputChange(event) {
@@ -53,10 +57,23 @@ export class NewListing extends Component {
       [name]: value
     });
   }
+  componentDidMount() {}
   render() {
     return (
       <div className="row">
         <form>
+          <div className="userInfo row">
+            <label htmlFor="user-info" className="user-info-label">
+              UserName:
+            </label>
+            <input
+              type="textarea"
+              className="user-info-input"
+              name="userInfo"
+              value={this.props.userInfo.name}
+              disabled
+            />
+          </div>
           <div className="description row">
             <label
               htmlFor="food-description"
@@ -64,12 +81,26 @@ export class NewListing extends Component {
             >
               Food Description
             </label>
-            <textarea
+            <input
               type="textarea"
               className="food-description-input"
               name="itemDescription"
               onChange={this.handleInputChange}
               value={this.state.itemDescription}
+              required
+            />
+          </div>
+          <br />
+          <div className="pickup-location row">
+            <label htmlFor="pickup-location" className="pickup-location-label">
+              Pickup Location
+            </label>
+            <input
+              type="textarea"
+              className="pickup-location-input"
+              name="pickupLocation"
+              onChange={this.handleInputChange}
+              required
             />
           </div>
           <br />
@@ -77,7 +108,7 @@ export class NewListing extends Component {
             <label htmlFor="pickup-notes" className="pickup-notes-label">
               Extra Pickup Notes
             </label>
-            <textarea
+            <input
               type="textarea"
               className="lister-extra-notes-input"
               name="listerExtraNotes"
@@ -197,5 +228,5 @@ export class NewListing extends Component {
     );
   }
 }
-
-export default connect()(NewListing);
+const mapStateToProps = state => ({ userInfo: state.userInfo });
+export default connect(mapStateToProps)(NewListing);

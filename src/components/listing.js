@@ -59,9 +59,23 @@ export class Listing extends Component {
       else return false;
     } else return false;
   }
-  componentDidMount() {
+  componentDidMount(nextProps) {
     console.log("listing did mount");
+
     console.log(this.props);
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log("willRecieveProps");
+  }
+  getExpires() {
+    return typeof this.props.listing.dateExpires === "undefined"
+      ? "No expiration"
+      : this.props.listing.dateExpires;
+  }
+  getAddress() {
+    return this.props.listing.listerContact
+      ? this.props.listing.listerContact.address
+      : "unavailable";
   }
   render() {
     //console.log("rendering listing with props: " + JSON.stringify(this.props));
@@ -84,40 +98,48 @@ export class Listing extends Component {
           </div>
           <div className="col-3">
             <div className="row column-label">Date Expires</div>
-            <div className="dateExpires row">
-              {this.props.listing.dateExpires === undefined
-                ? "No expiration"
-                : this.props.listing.dateExpires}
-            </div>
+            <div className="dateExpires row">{this.getExpires()}</div>
           </div>
           <div className="col-3">
             <div className="row column-label">More Info</div>
             <div className="moreInfo row">
-              <button onClick={this.moreInfo}>Interested!</button>
+              <button class="btn btn-info" onClick={this.moreInfo}>
+                Interested!
+              </button>
             </div>
           </div>
         </div>
 
         {this.state.showInterestedSection && (
           <div>
-            <div className="row moreInfo">
+            <div className="row moreInfo info">
               <div className="pickupLocation col-3">
+                <div className="row column-label">Pick-Up Location</div>
                 {this.props.listing.pickupLocation}
               </div>
               <div className="listerContact-address col-3">
-                {this.props.listing.listerContact.address}
+                <div className="row column-label">Pick-Up Address</div>
+                <address>{this.getAddress()}</address>
               </div>
               <div className="listerContact-phoneNumber col-3">
-                {this.props.listing.listerContact.phoneNumber}
+                <div className="row column-label">Contact Address</div>
+                {this.props.listing.listerContact &&
+                  this.props.listing.listerContact.phoneNumber}
               </div>
               <div className="listerContact-names col-3">
-                {this.props.listing.listerContact.nameFirst}{" "}
-                {this.props.listing.listerContact.nameLast}
+                <div className="row column-label">Contact Name</div>
+                {this.props.listing.listerContact &&
+                  this.props.listing.listerContact.nameFirst}{" "}
+                {this.props.listing.listerContact &&
+                  this.props.listing.listerContact.nameLast}
               </div>
             </div>
 
             <div className="claim-listing row">
-              <button onClick={e => this.claimListingDetails(e)}>
+              <button
+                class="btn btn-info"
+                onClick={e => this.claimListingDetails(e)}
+              >
                 Claim this listing!
               </button>
             </div>
@@ -130,7 +152,9 @@ export class Listing extends Component {
               <form>
                 By claiming this listing, you agree to the terms and conditions{" "}
                 <input type="checkbox" />
-                <button onClick={this.postClaim}>Claim it!</button>
+                <button class="btn btn-success" onClick={this.postClaim}>
+                  Claim it!
+                </button>
               </form>
             </div>
           </div>

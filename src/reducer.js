@@ -4,7 +4,8 @@ import {
   REFRESH_DATA,
   UPDATE_SEARCH_INPUT,
   UPDATE_FILTERED_LIST,
-  APPLY_CLAIMED_FILTER
+  APPLY_CLAIMED_FILTER,
+  UPDATE_USER_INFO
 } from "./actions/index";
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
   filteredListings: [],
   showInterestedSection: false,
   showClaimDetails: false,
-  searchInput: ""
+  searchInput: "",
+  userInfo: {}
 };
 
 export default (state = initialState, action) => {
@@ -48,6 +50,11 @@ export default (state = initialState, action) => {
       filteredListings: action.newFilteredList
     });
   }
-
+  if (action.type === UPDATE_USER_INFO) {
+    console.log("updating user info");
+    return Object.assign({}, state, {
+      userInfo: action.userInfo
+    });
+  }
   return state;
 };

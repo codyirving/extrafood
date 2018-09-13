@@ -8,7 +8,7 @@ const ACCESS_TOKEN_KEY = "access_token";
 const CLIENT_ID = "4n0WRpvfn6i5Iwpfy01hgkaDrdLZVs3y";
 const CLIENT_DOMAIN = "codyi.auth0.com";
 const REDIRECT = "http://localhost:3000/callback";
-const SCOPE = "YOUR_SCOPE";
+const SCOPE = "openid profile";
 const AUDIENCE = "extrafoodAPI.codyi.mobi";
 
 var auth = new auth0.WebAuth({
@@ -43,6 +43,23 @@ export function getIdToken() {
 
 export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
+}
+
+export async function getManagementToken() {
+  var options = {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body:
+      '{"client_id":"XxtalDRLZ8EMR9YsI8qcW3fiCe3g1ZOu","client_secret":"EHsopQ4VYcNTzJK0F0Ef_5MQhehp-PGi_SH7Ana_DBGkBv9vgcMMyVoqPHuNHT0D","audience":"https://codyi.auth0.com/api/v2/","grant_type":"client_credentials"}'
+  };
+
+  return await fetch("https://codyi.auth0.com/oauth/token", options)
+    .then(res => res.json())
+    .then(resJson => {
+      console.log("resJson", resJson);
+      return resJson.access_token;
+    })
+    .catch(err => console.log("Error", err));
 }
 
 function clearIdToken() {
