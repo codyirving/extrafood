@@ -18,25 +18,7 @@ export class NavBar extends Component {
     event.preventDefault();
     this.props.dispatch(toggleMainPage());
   }
-  async getUserInfo(managementToken) {
-    console.log("managementToken", await managementToken);
-    fetch("https://codyi.auth0.com/api/v2/users", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${managementToken}`,
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      mode: "cors", // no-cors, cors, *same-origin
-      credentials: "same-origin"
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("data!", data);
-        this.setState({ userInfo: data[0].name });
-        return data;
-      })
-      .catch(err => console.log("Uh Oh..." + err));
-  }
+
   async componentDidMount() {
     const idToken = getIdToken();
     try {

@@ -45,24 +45,6 @@ export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
-export async function getManagementToken() {
-  var options = {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: `"{"client_id":"XxtalDRLZ8EMR9YsI8qcW3fiCe3g1ZOu","client_secret":${
-      process.env.CLIENT_SECRET
-    },"audience":"https://codyi.auth0.com/api/v2/","grant_type":"client_credentials"}"`
-  };
-
-  return await fetch("https://codyi.auth0.com/oauth/token", options)
-    .then(res => res.json())
-    .then(resJson => {
-      console.log("resJson", resJson);
-      return resJson.access_token;
-    })
-    .catch(err => console.log("Error", err));
-}
-
 function clearIdToken() {
   localStorage.removeItem(ID_TOKEN_KEY);
 }
