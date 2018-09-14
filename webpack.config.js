@@ -80,6 +80,7 @@ module.exports = {
         //        save: true
         //    }),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+     
     ]
 
 }

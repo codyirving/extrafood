@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^9.7.3",
+    "dotenv": "^6.0.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.3",

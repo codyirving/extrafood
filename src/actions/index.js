@@ -22,7 +22,7 @@ export function refData() {
     let newData;
     let response = [];
     console.log("access toke: " + getAccessToken());
-    fetch("http://localhost:3001/foodlistings/", {
+    fetch("http://extrafood.codyi.mobi:3001/foodlistings/", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
@@ -51,7 +51,7 @@ export function applyClaimedFilter() {
     // this.tempList = newFilteredListings;
     console.log("apply claimed: " + getState());
     let newData;
-    fetch("http://localhost:3001/foodlistings/")
+    fetch("http://extrafood.codyi.mobi:3001/foodlistings/")
       .then(response => response.json())
       .then(data => {
         console.log("(applyclaimed)Data: ", data);
@@ -91,7 +91,10 @@ export function claimListing(id) {
         .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    return postData("http://localhost:3001/foodlistings/claim", payload)
+    return postData(
+      "http://extrafood.codyi.mobi:3001/foodlistings/claim",
+      payload
+    )
       .then(data => dispatch(refData()))
       .catch(error => console.error(error));
   };
@@ -130,7 +133,7 @@ export function postNewListing(newListing) {
         .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    return postData("http://localhost:3001/foodlistings/", payload)
+    return postData("http://extrafood.codyi.mobi:3001/foodlistings/", payload)
       .then(data => dispatch(refData()))
       .catch(error => console.error(error));
   };

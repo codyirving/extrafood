@@ -37,15 +37,18 @@ export class Listing extends Component {
     }
   };
   async checkClaim(id) {
-    let claimCheck = await fetch("http://localhost:3001/foodlistings/", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      mode: "cors", // no-cors, cors, *same-origin
-      credentials: "same-origin"
-    })
+    let claimCheck = await fetch(
+      "http://extrafood.codyi.mobi:3001/foodlistings/",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        mode: "cors", // no-cors, cors, *same-origin
+        credentials: "same-origin"
+      }
+    )
       .then(response => response.json())
       .then(data => {
         console.log("data!", data);
