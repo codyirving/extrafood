@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Redux from "react-redux";
+import decode from "jwt-decode";
 import { connect } from "react-redux";
-import { getAccessToken } from "../utils/AuthService";
+import { getAccessToken, getIdToken } from "../utils/AuthService";
 import {
   claimListing,
   refreshData,
@@ -12,8 +13,24 @@ import {
 export class Listing extends Component {
   state = {
     showInterestedSection: false,
-    showClaimDetails: false
+    showClaimDetails: false,
+    userInfo: []
   };
+
+  getClaimerEmail() {
+    const idToken = getIdToken();
+    try {
+      console.log("ID TOKEN: " + JSON.stringify(decode(idToken)));
+      console.log("Got Token!: " + idToken);
+    } catch (e) {
+      console.log("error", e);
+    }
+    if (idToken) {
+      const userInfo = decode(idToken);
+      this.setState({ userInfo: userInfo });
+    }
+  }
+
   moreInfo = () => {
     console.log(this.props.listing);
     //this.setState({ showDetails: !this.state.showInterestedSection });
@@ -30,7 +47,9 @@ export class Listing extends Component {
     e.preventDefault();
     if (await this.checkClaim(this.props.listing._id)) {
       this.props
-        .dispatch(claimListing(this.props.listing._id))
+        .dispatch(
+          claimListing(this.props.listing._id, this.state.userInfo.email)
+        )
         .then(alert("Success!"));
     } else {
       alert("oh no, this listing has already been claimed :(");

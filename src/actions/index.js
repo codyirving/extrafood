@@ -64,12 +64,13 @@ export function applyClaimedFilter() {
   };
 }
 
-export function claimListing(id) {
+export function claimListing(id, email) {
   return (dispatch, getState) => {
     const payload = {
       _id: id,
       claimed: "true",
-      claimedDate: new Date()
+      claimedDate: new Date(),
+      email: email
     };
 
     const postData = (url = "", data = {}) => {
