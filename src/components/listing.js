@@ -21,13 +21,12 @@ export class Listing extends Component {
     const idToken = getIdToken();
     try {
       console.log("ID TOKEN: " + JSON.stringify(decode(idToken)));
-      console.log("Got Token!: " + idToken);
+      console.log("Got Token!!: " + idToken);
+      const userInfo = decode(idToken);
+      console.log("user info: " + JSON.stringify(userInfo));
+      this.setState({ userInfo: userInfo });
     } catch (e) {
       console.log("error", e);
-    }
-    if (idToken) {
-      const userInfo = decode(idToken);
-      this.setState({ userInfo: userInfo });
     }
   }
 
@@ -45,6 +44,7 @@ export class Listing extends Component {
   };
   postClaim = async e => {
     e.preventDefault();
+    this.getClaimerEmail();
     if (await this.checkClaim(this.props.listing._id)) {
       this.props
         .dispatch(
@@ -57,7 +57,7 @@ export class Listing extends Component {
   };
   async checkClaim(id) {
     let claimCheck = await fetch(
-      "http://extrafood.codyi.mobi:3001/foodlistings/",
+      `http://${process.env.REACT_APP_API_HOST}/foodlistings/`,
       {
         method: "GET",
         headers: {

@@ -33,7 +33,7 @@ export class NewListing extends Component {
 
   submitNewListing(e) {
     e.preventDefault();
-    //console.log(this.state);
+    console.log(this.state);
     this.state.itemDescription && this.state.pickupLocation
       ? this.props
           .dispatch(postNewListing(this.state))
@@ -70,7 +70,7 @@ export class NewListing extends Component {
               type="textarea"
               className="user-info-input"
               name="userInfo"
-              value={this.props.userInfo.name}
+              value={this.props.userInfo.email}
               disabled
             />
           </div>

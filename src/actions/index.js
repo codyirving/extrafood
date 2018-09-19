@@ -22,7 +22,7 @@ export function refData() {
     let newData;
     let response = [];
     console.log("access toke: " + getAccessToken());
-    fetch("http://extrafood.codyi.mobi:3001/foodlistings/", {
+    fetch(`http://${process.env.REACT_APP_API_HOST}/foodlistings/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
@@ -51,7 +51,7 @@ export function applyClaimedFilter() {
     // this.tempList = newFilteredListings;
     console.log("apply claimed: " + getState());
     let newData;
-    fetch("http://extrafood.codyi.mobi:3001/foodlistings/")
+    fetch(`http://${process.env.REACT_APP_API_HOST}/foodlistings/`)
       .then(response => response.json())
       .then(data => {
         console.log("(applyclaimed)Data: ", data);
@@ -65,6 +65,7 @@ export function applyClaimedFilter() {
 }
 
 export function claimListing(id, email) {
+  console.log("Email? " + email);
   return (dispatch, getState) => {
     const payload = {
       _id: id,
@@ -93,7 +94,7 @@ export function claimListing(id, email) {
     };
 
     return postData(
-      "http://extrafood.codyi.mobi:3001/foodlistings/claim",
+      `http://${process.env.REACT_APP_API_HOST}/foodlistings/claim`,
       payload
     )
       .then(data => dispatch(refData()))
@@ -134,7 +135,10 @@ export function postNewListing(newListing) {
         .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    return postData("http://extrafood.codyi.mobi:3001/foodlistings/", payload)
+    return postData(
+      `http://${process.env.REACT_APP_API_HOST}/foodlistings/`,
+      payload
+    )
       .then(data => dispatch(refData()))
       .catch(error => console.error(error));
   };

@@ -7,8 +7,8 @@ const ACCESS_TOKEN_KEY = "access_token";
 
 const CLIENT_ID = "4n0WRpvfn6i5Iwpfy01hgkaDrdLZVs3y";
 const CLIENT_DOMAIN = "codyi.auth0.com";
-const REDIRECT = "http://extrafood.codyi.mobi/callback";
-const SCOPE = "openid profile";
+const REDIRECT = `http://${process.env.REACT_APP_HOST}/callback`;
+const SCOPE = "";
 const AUDIENCE = "extrafoodAPI.codyi.mobi";
 
 var auth = new auth0.WebAuth({

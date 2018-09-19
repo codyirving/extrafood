@@ -20,6 +20,7 @@ export class NavBar extends Component {
   }
 
   async componentDidMount() {
+    console.log("PROCESS.ENV:" + JSON.stringify(process.env));
     const idToken = getIdToken();
     try {
       console.log("ID TOKEN: " + JSON.stringify(decode(idToken)));
