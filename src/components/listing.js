@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import Redux from "react-redux";
 import decode from "jwt-decode";
 import { connect } from "react-redux";
 import { getAccessToken, getIdToken } from "../utils/AuthService";
-import {
-  claimListing,
-  refreshData,
-  toggleInterestedSection,
-  refData
-} from "../actions/index";
+import { claimListing } from "../actions/index";
 
 export class Listing extends Component {
   state = {

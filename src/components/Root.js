@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
-import { BrowserRouter, Router, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Callback from "../components/Callback";
 import App from "../App";
 const Root = ({ store }) => (

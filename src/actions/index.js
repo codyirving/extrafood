@@ -1,6 +1,3 @@
-import React from "react";
-import Listing from "../components/listing";
-
 import { getAccessToken } from "../utils/AuthService";
 export const TOGGLE_MAIN_PAGE = "TOGGLE_MAIN_PAGE";
 export const toggleMainPage = () => ({
@@ -17,10 +14,7 @@ export const refreshData = newData => {
 
 export function refData() {
   return (dispatch, getState) => {
-    //let newData = [];
     console.log("getState before refData() : " + JSON.stringify(getState()));
-    let newData;
-    let response = [];
     console.log("access toke: " + getAccessToken());
     fetch(`http://${process.env.REACT_APP_API_HOST}/foodlistings/`, {
       method: "GET",

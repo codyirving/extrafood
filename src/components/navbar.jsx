@@ -2,14 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toggleMainPage, updateUserInfo } from "../actions/index";
 import decode from "jwt-decode";
-import {
-  login,
-  logout,
-  isLoggedIn,
-  getAccessToken,
-  getManagementToken,
-  getIdToken
-} from "../utils/AuthService";
+import { login, logout, isLoggedIn, getIdToken } from "../utils/AuthService";
 export class NavBar extends Component {
   state = {
     userInfo: []

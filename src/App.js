@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Router, Route } from "react-router-dom";
 import NavBar from "./components/navbar";
 import ClaimFood from "./components/claimfood";
 import ListFood from "./components/listfood";
-import Callback from "./components/Callback";
 import Welcome from "./components/welcome.jsx";
 import { isLoggedIn } from "./utils/AuthService";
 import "./App.css";

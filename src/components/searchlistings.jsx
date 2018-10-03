@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateSearchInput, updateFilteredList, refData } from "../actions";
+import { updateSearchInput, updateFilteredList } from "../actions";
 import store from "../store";
 class SearchListings extends Component {
   constructor(props) {
@@ -11,13 +11,8 @@ class SearchListings extends Component {
   handleChange = e => {
     console.log("handling change " + e.target.value);
     const searchInput = e.target.value;
-
     this.props.dispatch(updateSearchInput(searchInput));
     this.handleSearch(searchInput);
-
-    // this.setState({ searchInput: e.target.value }, () =>
-    //   this.props.onClick(this.state.input)
-    // );
   };
 
   handleSearch = searchInput => {
@@ -35,20 +30,6 @@ class SearchListings extends Component {
     this.props.dispatch(updateFilteredList(filteredList));
   };
 
-  // handleSearch = input => {
-  //   console.log("handling Search: " + input);
-  //   const filteredList = this.state.listings.filter(listing => {
-  //     return (
-  //       listing.itemDescription.includes(input) === true &&
-  //       listing.itemDescription
-  //     );
-  //   });
-  //   this.setState({ filteredListings: filteredList });
-  // };
-  componentDidMount() {
-    console.log("searchlistings did mount");
-    //this.props.dispatch(refData());
-  }
   render() {
     return (
       <div className="col-4">

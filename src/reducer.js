@@ -4,7 +4,6 @@ import {
   REFRESH_DATA,
   UPDATE_SEARCH_INPUT,
   UPDATE_FILTERED_LIST,
-  APPLY_CLAIMED_FILTER,
   UPDATE_USER_INFO
 } from "./actions/index";
 
@@ -25,7 +24,6 @@ export default (state = initialState, action) => {
     return Object.assign({}, state, { togglePage: !state.togglePage });
   }
   if (action.type === REFRESH_DATA) {
-    console.log("Refreshing data: " + " Action: " + JSON.stringify(action));
     return Object.assign({}, state, {
       listings: action.newData,
       filteredListings: action.newData
@@ -39,19 +37,16 @@ export default (state = initialState, action) => {
   }
 
   if (action.type === UPDATE_SEARCH_INPUT) {
-    console.log("updating search input");
     return Object.assign({}, state, {
       searchInput: action.input
     });
   }
   if (action.type === UPDATE_FILTERED_LIST) {
-    console.log("updating filtered list");
     return Object.assign({}, state, {
       filteredListings: action.newFilteredList
     });
   }
   if (action.type === UPDATE_USER_INFO) {
-    console.log("updating user info");
     return Object.assign({}, state, {
       userInfo: action.userInfo
     });
