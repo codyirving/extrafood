@@ -38,19 +38,7 @@ export class NavBar extends Component {
     return (
       <nav>
         <div className="user-welcome">
-          {isLoggedIn() && this.state.userInfo.name}
-        </div>
-        <div className="row">
-          {isLoggedIn() &&
-            this.props.togglePage && (
-              <button onClick={e => this.onClick(e)}>Click to List Food</button>
-            )}
-          {isLoggedIn() &&
-            !this.props.togglePage && (
-              <button onClick={e => this.onClick(e)}>
-                Click to Claim Food
-              </button>
-            )}
+          {isLoggedIn() && <div>Welcome, {this.state.userInfo.name}</div>}
         </div>
         <div className="row login-row">
           {isLoggedIn() ? (
@@ -65,6 +53,28 @@ export class NavBar extends Component {
               Log In
             </button>
           )}
+        </div>
+        <div className="row toggle-button-container">
+          <div className="col-6">
+            {isLoggedIn() &&
+              this.props.togglePage && (
+                <button
+                  className="toggle-button"
+                  onClick={e => this.onClick(e)}
+                >
+                  Click to List Food
+                </button>
+              )}
+            {isLoggedIn() &&
+              !this.props.togglePage && (
+                <button
+                  className="toggle-button"
+                  onClick={e => this.onClick(e)}
+                >
+                  Click to Claim Food
+                </button>
+              )}
+          </div>
         </div>
       </nav>
     );

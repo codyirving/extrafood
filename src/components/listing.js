@@ -125,7 +125,7 @@ export class Listing extends Component {
           <div className="col-3">
             <div className="row column-label">More Info</div>
             <div className="moreInfo row">
-              <button class="btn btn-info" onClick={this.moreInfo}>
+              <button className="btn btn-info" onClick={this.moreInfo}>
                 Interested!
               </button>
             </div>
@@ -159,7 +159,7 @@ export class Listing extends Component {
 
             <div className="claim-listing row">
               <button
-                class="btn btn-info"
+                className="btn btn-info"
                 onClick={e => this.claimListingDetails(e)}
               >
                 Claim this listing!
@@ -174,7 +174,7 @@ export class Listing extends Component {
               <form>
                 By claiming this listing, you agree to the terms and conditions{" "}
                 <input type="checkbox" />
-                <button class="btn btn-success" onClick={this.postClaim}>
+                <button className="btn btn-success" onClick={this.postClaim}>
                   Claim it!
                 </button>
               </form>
@@ -187,8 +187,6 @@ export class Listing extends Component {
 }
 
 const mapStateToProps = state => ({
-  listings: state.listings,
-  filteredListings: state.filteredListings,
   showInterestedSection: state.showInterestedSection,
   showClaimDetails: state.showClaimDetails
 });

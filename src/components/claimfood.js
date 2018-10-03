@@ -59,8 +59,10 @@ export class ClaimFood extends Component {
   render() {
     return (
       <React.Fragment>
-        <SearchListings />
-        <RefreshData />
+        <div className="row search-refresh">
+          <SearchListings />
+          <RefreshData />
+        </div>
         <Listings />
       </React.Fragment>
     );

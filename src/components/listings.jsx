@@ -62,7 +62,7 @@ export class Listings extends Component {
     return this.props.filteredListings
       ? this.props.filteredListings.length > 0
         ? this.props.filteredListings
-            .filter(listing => listing.claimed !== true)
+            //.filter(listing => listing.claimed !== true)
             .map(listing => <Listing listing={listing} key={listing._id} />)
         : null
       : null;

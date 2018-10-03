@@ -81,8 +81,7 @@ export class NewListing extends Component {
             >
               Food Description
             </label>
-            <input
-              type="textarea"
+            <textarea
               className="food-description-input"
               name="itemDescription"
               onChange={this.handleInputChange}

@@ -1,8 +1,17 @@
 body {
-  background-size: 100% auto;
+  background-size: cover;
   background-repeat: no-repeat;
   font-family: "Kosugi Maru", sans-serif;
+  background-color: rgba(148, 201, 169, 1);
 }
+
+/***/
+/* $color1: rgba(22, 25, 37, 1);
+$color2: rgba(35, 57, 91, 1);
+$color3: rgba(64, 110, 142, 1);
+$color4: rgba(148, 201, 169, 1);
+$color5: rgba(203, 247, 237, 1); */
+/***/
 
 .App {
   text-align: center;
@@ -106,21 +115,29 @@ body {
 /*******************/
 
 .listing {
-  background-color: antiquewhite;
+  background-color: rgba(22, 25, 37, 0.3);
   margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 2px 2px rgba(64, 110, 142, 1);
 }
 .itemDescription {
-  background-color: cornflowerblue;
+  background-color: rgba(203, 247, 237, 1);
   font-size: 20px;
+  min-height: 55px;
 }
 .dateExpires {
-  background-color: #fff;
+  background-color: rgba(203, 247, 237, 1);
+  min-height: 55px;
 }
 .datePosted {
-  background-color: red;
+  background-color: rgba(203, 247, 237, 1);
+  min-height: 55px;
 }
 .column-label {
   border-bottom: 1px solid black;
+  color: white;
+  font-size: 110%;
 }
 .food-available-date-input {
 }
@@ -129,7 +146,14 @@ body {
 .food-description-input {
   height: 200px;
   width: 100%;
-  word-wrap: normal;
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
 }
 .pickup-location-input {
   height: 200px;
@@ -144,4 +168,59 @@ body {
 .welcome-component {
   background-color: white;
   background-blend-mode: lighten;
+  margin-top: 50px;
+}
+.logo {
+  background-image: url("logo_transparent.png");
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  float: right;
+  margin-bottom: -90px;
+  margin-top: -47px;
+}
+.search-refresh {
+  margin-top: 40px;
+  padding-bottom: 10px;
+}
+.toggle-button {
+  background-color: rgba(64, 110, 142, 1);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.toggle-button-container {
+  margin-top: 10px;
+}
+.login-row {
+}
+.refresh-button {
+  background-color: rgba(64, 110, 142, 1);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.search-button {
+  background-color: rgba(64, 110, 142, 1);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.search-box {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+.custom-input-textarea {
 }

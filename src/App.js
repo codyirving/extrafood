@@ -21,8 +21,11 @@ export class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <div className="logo col-6" />
         <NavBar />
+
         {!isLoggedIn() && <Welcome />}
+
         {isLoggedIn() && <main className="container" />}
         {isLoggedIn() && this.props.togglePage && <ClaimFood />}
         {isLoggedIn() && !this.props.togglePage && <ListFood />}
