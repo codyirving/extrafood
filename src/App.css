@@ -1,8 +1,7 @@
+html,
 body {
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: "Kosugi Maru", sans-serif;
-  background-color: rgba(148, 201, 169, 1);
+  height: 100%;
+  margin: 0;
 }
 
 /***/
@@ -183,44 +182,17 @@ $color5: rgba(203, 247, 237, 1); */
   margin-top: 40px;
   padding-bottom: 10px;
 }
-.toggle-button {
-  background-color: rgba(64, 110, 142, 1);
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
+
 .toggle-button-container {
   margin-top: 10px;
-}
-.login-row {
-}
-.refresh-button {
-  background-color: rgba(64, 110, 142, 1);
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.search-button {
-  background-color: rgba(64, 110, 142, 1);
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
 }
 .search-box {
   padding: 5px 10px;
   margin-right: 5px;
 }
-.custom-input-textarea {
+.extrafood-logo {
+  background: url("./logo.png");
+}
+.user-photo {
+  float: left;
 }

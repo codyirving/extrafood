@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import DayPicker from "react-day-picker";
 import { postNewListing } from "../actions/index";
+import "react-day-picker/lib/style.css";
 export class NewListing extends Component {
   state = {
     userName: "",
@@ -60,12 +61,13 @@ export class NewListing extends Component {
   componentDidMount() {}
   render() {
     return (
-      <div className="row">
+      <div className="container">
         <form>
-          <div className="userInfo row">
+          <div className="userInfo row-personal">
             <label htmlFor="user-info" className="user-info-label">
               UserName:
             </label>
+
             <input
               type="textarea"
               className="user-info-input"
@@ -74,13 +76,14 @@ export class NewListing extends Component {
               disabled
             />
           </div>
-          <div className="description row">
+          <div className="description row-personal">
             <label
               htmlFor="food-description"
               className="food-description-label"
             >
               Food Description
             </label>
+            <br />
             <textarea
               className="food-description-input"
               name="itemDescription"
@@ -90,12 +93,12 @@ export class NewListing extends Component {
             />
           </div>
           <br />
-          <div className="pickup-location row">
+          <div className="pickup-location row-personal">
             <label htmlFor="pickup-location" className="pickup-location-label">
               Pickup Location
             </label>
-            <input
-              type="textarea"
+            <br />
+            <textarea
               className="pickup-location-input"
               name="pickupLocation"
               onChange={this.handleInputChange}
@@ -103,19 +106,19 @@ export class NewListing extends Component {
             />
           </div>
           <br />
-          <div className="pickup-notes row">
+          <div className="pickup-notes row-personal">
             <label htmlFor="pickup-notes" className="pickup-notes-label">
               Extra Pickup Notes
             </label>
-            <input
-              type="textarea"
+            <br />
+            <textarea
               className="lister-extra-notes-input"
               name="listerExtraNotes"
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="date-pickers row">
-            <div className="col-6">
+          <div className="date-pickers row-personal">
+            <div className="col-sm">
               <label
                 htmlFor="food-available-date"
                 className="food-available-label"
@@ -136,7 +139,7 @@ export class NewListing extends Component {
               />
               <DayPicker onDayClick={this.handleAvailableClick} />
             </div>
-            <div className="col-6">
+            <div className="date-label">
               <label
                 htmlFor="food-expiration-date"
                 className="food-expiration-label"
@@ -155,11 +158,13 @@ export class NewListing extends Component {
                 }
                 onChange={this.handleInputChange}
               />
-              <DayPicker onDayClick={this.handleExpiresClick} />
+              <div className="col-sm">
+                <DayPicker onDayClick={this.handleExpiresClick} />
+              </div>
             </div>
           </div>
           <br />
-          <div className="checkbox-options row">
+          <div className="checkbox-options row-personal">
             <label>
               Self Pickup:
               <input

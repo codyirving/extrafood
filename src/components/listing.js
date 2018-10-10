@@ -3,7 +3,7 @@ import decode from "jwt-decode";
 import { connect } from "react-redux";
 import { getAccessToken, getIdToken } from "../utils/AuthService";
 import { claimListing } from "../actions/index";
-
+import moment from "moment";
 export class Listing extends Component {
   state = {
     showInterestedSection: false,
@@ -98,28 +98,38 @@ export class Listing extends Component {
     //const { dateExpires, itemDescription, datePosted } = this.props.listing;
     return (
       //TODO Automatically filter expiredListings
-      <div className="row listing">
+      <li className="row-personal listing list-group-item">
         <div className="row basic-info">
-          <div className="col-3">
-            <div className="row column-label">Date Listed</div>
-            <div className="datePosted row">
-              {this.props.listing.datePosted}
+          <div className="col-sm">
+            <div className="row-personal column-label font-weight-bold pb-1">
+              Date Listed
+            </div>
+            <div className="datePosted row-personal badge badge-primary badge-pill">
+              {moment(this.props.listing.datePosted).format("MMM Do YY")}
             </div>
           </div>
-          <div className="col-3">
-            <div className="row column-label">Food Description</div>
-            <div className="itemDescription row">
+          <div className="col-sm">
+            <div className="row-personal column-label font-weight-bold pb-1 green-text">
+              Food Description
+            </div>
+            <div className="itemDescription row-personal light-green-text">
               {this.props.listing.itemDescription}
             </div>
           </div>
-          <div className="col-3">
-            <div className="row column-label">Date Expires</div>
-            <div className="dateExpires row">{this.getExpires()}</div>
+          <div className="col-sm">
+            <div className="row-personal column-label font-weight-bold pb-1">
+              Date Expires
+            </div>
+            <div className="dateExpires row-personal badge badge-primary badge-pill">
+              {moment(this.getExpires()).format("MMM Do YY")}
+            </div>
           </div>
-          <div className="col-3">
-            <div className="row column-label">More Info</div>
-            <div className="moreInfo row">
-              <button className="btn btn-info" onClick={this.moreInfo}>
+          <div className="col-sm">
+            <div className="row-personal column-label font-weight-bold pb-1">
+              More Info
+            </div>
+            <div className="moreInfo row-personal">
+              <button className="btn btn-primary" onClick={this.moreInfo}>
                 Interested!
               </button>
             </div>
@@ -129,21 +139,29 @@ export class Listing extends Component {
         {this.state.showInterestedSection && (
           <div>
             <div className="row moreInfo info">
-              <div className="pickupLocation col-3">
-                <div className="row column-label">Pick-Up Location</div>
+              <div className="pickupLocation col-sm">
+                <div className="row-personal column-label font-weight-bold pb-1">
+                  Pick-Up Location
+                </div>
                 {this.props.listing.pickupLocation}
               </div>
-              <div className="listerContact-address col-3">
-                <div className="row column-label">Pick-Up Address</div>
+              <div className="listerContact-address col-sm">
+                <div className="row-personal column-label font-weight-bold pb-1">
+                  Pick-Up Address
+                </div>
                 <address>{this.getAddress()}</address>
               </div>
-              <div className="listerContact-phoneNumber col-3">
-                <div className="row column-label">Contact Address</div>
+              <div className="listerContact-phoneNumber col-sm">
+                <div className="row-personal column-label font-weight-bold pb-1">
+                  Contact Address
+                </div>
                 {this.props.listing.listerContact &&
                   this.props.listing.listerContact.phoneNumber}
               </div>
-              <div className="listerContact-names col-3">
-                <div className="row column-label">Contact Name</div>
+              <div className="listerContact-names col-sm">
+                <div className="row-personal column-label font-weight-bold pb-1">
+                  Contact Name
+                </div>
                 {this.props.listing.listerContact &&
                   this.props.listing.listerContact.nameFirst}{" "}
                 {this.props.listing.listerContact &&
@@ -151,7 +169,7 @@ export class Listing extends Component {
               </div>
             </div>
 
-            <div className="claim-listing row">
+            <div className="claim-listing row-personal">
               <button
                 className="btn btn-info"
                 onClick={e => this.claimListingDetails(e)}
@@ -163,19 +181,19 @@ export class Listing extends Component {
         )}
 
         {this.state.showClaimDetails && (
-          <div className="row">
+          <div className="row-personal">
             <div className="agree-to-conditions">
               <form>
                 By claiming this listing, you agree to the terms and conditions{" "}
                 <input type="checkbox" />
-                <button className="btn btn-success" onClick={this.postClaim}>
+                <button className="btn btn-primary " onClick={this.postClaim}>
                   Claim it!
                 </button>
               </form>
             </div>
           </div>
         )}
-      </div>
+      </li>
     );
   }
 }

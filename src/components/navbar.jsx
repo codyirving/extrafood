@@ -29,11 +29,8 @@ export class NavBar extends Component {
   }
   render() {
     return (
-      <nav>
-        <div className="user-welcome">
-          {isLoggedIn() && <div>Welcome, {this.state.userInfo.name}</div>}
-        </div>
-        <div className="row login-row">
+      <nav className="row container">
+        <div className="row-personal login-row-personal col-sm">
           {isLoggedIn() ? (
             <button
               className="btn btn-danger log"
@@ -47,12 +44,12 @@ export class NavBar extends Component {
             </button>
           )}
         </div>
-        <div className="row toggle-button-container">
-          <div className="col-6">
+        <div className="row-personal col-sm">
+          <div className="">
             {isLoggedIn() &&
               this.props.togglePage && (
                 <button
-                  className="toggle-button"
+                  className="btn btn-deep-orange"
                   onClick={e => this.onClick(e)}
                 >
                   Click to List Food
@@ -61,13 +58,23 @@ export class NavBar extends Component {
             {isLoggedIn() &&
               !this.props.togglePage && (
                 <button
-                  className="toggle-button"
+                  className="btn btn-deep-orange"
                   onClick={e => this.onClick(e)}
                 >
                   Click to Claim Food
                 </button>
               )}
           </div>
+        </div>
+        <div className="user-welcome col-sm">
+          {isLoggedIn() && (
+            <div>
+              <div className="user-photo">
+                <img src={this.state.userInfo.picture} alt="user-avatar" />{" "}
+              </div>
+              <div> Welcome, {this.state.userInfo.name}</div>
+            </div>
+          )}
         </div>
       </nav>
     );

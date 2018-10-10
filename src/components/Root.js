@@ -7,7 +7,7 @@ import App from "../App";
 const Root = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>
-      <div>
+      <div className="container">
         <Route path="/:filter?" component={App} />
         <Route path="/callback" component={Callback} />
       </div>

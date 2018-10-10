@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class welcome extends Component {
   render() {
     return (
-      <div className="row welcome-component">
+      <div className="container row-personal-personal welcome-component">
         Welcome to EXTRA FOOD! <br />A place to give your extra food away, to
         those who need it! <br />A place to get extra food, when you need it!{" "}
         <br />

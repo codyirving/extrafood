@@ -4,11 +4,10 @@ import ClaimFood from "./components/claimfood";
 import ListFood from "./components/listfood";
 import Welcome from "./components/welcome.jsx";
 import { isLoggedIn } from "./utils/AuthService";
-import "./App.css";
+import "./AppNew.css";
 import { connect } from "react-redux";
 
 import { refData } from "./actions/index";
-import "react-day-picker/lib/style.css";
 
 export class App extends Component {
   componentDidMount() {
@@ -19,7 +18,7 @@ export class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="logo col-6" />
+        <div className="extrafood-logo" />
         <NavBar />
 
         {!isLoggedIn() && <Welcome />}
