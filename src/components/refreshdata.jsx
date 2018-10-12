@@ -9,13 +9,15 @@ export class RefreshData extends Component {
   };
   render() {
     return (
-      <div className="col-4">
-        <button
-          className="btn btn-deep-orange refresh-button"
-          onClick={e => this.onClick(e)}
-        >
-          REFRESH LISTINGS
-        </button>
+      <div className="row">
+        <div className="col-sm">
+          <button
+            className="btn btn-deep-orange refresh-button"
+            onClick={e => this.onClick(e)}
+          >
+            REFRESH LISTINGS
+          </button>
+        </div>
       </div>
     );
   }

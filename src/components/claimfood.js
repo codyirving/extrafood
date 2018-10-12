@@ -13,7 +13,7 @@ export class ClaimFood extends Component {
             <SearchListings />
             <RefreshData />
           </div>
-          <ul class="list-group">
+          <ul className="list-group">
             <Listings />
           </ul>
         </div>

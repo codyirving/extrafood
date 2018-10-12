@@ -32,19 +32,22 @@ class SearchListings extends Component {
 
   render() {
     return (
-      <div className="col-4">
-        <input
-          className="search-box"
-          type="textbox"
-          name="input"
-          onChange={this.handleChange}
-        />
-        <button
-          className="search-button"
-          onClick={() => this.handleSearch(this.props.searchInput)}
-        >
-          Search
-        </button>
+      <div className="row ">
+        <div className="col-4  ">
+          <input
+            className="col-sm form-control "
+            type="textbox"
+            name="input"
+            onChange={this.handleChange}
+          />
+
+          <button
+            className="col-sm btn btn-blue "
+            onClick={() => this.handleSearch(this.props.searchInput)}
+          >
+            Search
+          </button>
+        </div>
       </div>
     );
   }

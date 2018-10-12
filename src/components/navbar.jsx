@@ -69,13 +69,17 @@ export class NavBar extends Component {
         <div className="user-welcome col-sm">
           {isLoggedIn() && (
             <div>
-              <div className="user-photo">
+              <div className="user-photo col-sm">
                 <img src={this.state.userInfo.picture} alt="user-avatar" />{" "}
               </div>
-              <div> Welcome, {this.state.userInfo.name}</div>
+              <div className="col-sm white-text">
+                {" "}
+                Welcome, {this.state.userInfo.name}
+              </div>
             </div>
           )}
         </div>
+        <div className="extrafood-logo" />
       </nav>
     );
   }

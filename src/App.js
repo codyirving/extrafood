@@ -18,7 +18,6 @@ export class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="extrafood-logo" />
         <NavBar />
 
         {!isLoggedIn() && <Welcome />}

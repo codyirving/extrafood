@@ -100,6 +100,8 @@ export function postNewListing(newListing) {
     const payload = {
       itemDescription: newListing.itemDescription,
       listerExtraNotes: newListing.listerExtraNotes,
+      pickupLocation: newListing.pickupLocation,
+      userEmail: newListing.userEmail,
       dateAvailable: newListing.dateAvailable,
       dateExpires: newListing.dateExpires,
       selfPickup: newListing.selfPickup,

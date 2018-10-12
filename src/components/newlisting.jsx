@@ -11,6 +11,7 @@ export class NewListing extends Component {
     listerExtraNotes: "",
     dateAvailable: "",
     dateExpires: "",
+    pickupLocation: "",
     selfPickup: false,
     curbsidePickup: false,
     comeToDoor: false,
@@ -34,7 +35,7 @@ export class NewListing extends Component {
 
   submitNewListing(e) {
     e.preventDefault();
-    console.log(this.state);
+    //alert(JSON.stringify(this.state));
     this.state.itemDescription && this.state.pickupLocation
       ? this.props
           .dispatch(postNewListing(this.state))
@@ -58,7 +59,9 @@ export class NewListing extends Component {
       [name]: value
     });
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({ userEmail: this.props.userInfo.email });
+  }
   render() {
     return (
       <div className="container">
@@ -72,7 +75,7 @@ export class NewListing extends Component {
               type="textarea"
               className="user-info-input"
               name="userInfo"
-              value={this.props.userInfo.email}
+              value={this.state.userEmail}
               disabled
             />
           </div>
@@ -89,6 +92,7 @@ export class NewListing extends Component {
               name="itemDescription"
               onChange={this.handleInputChange}
               value={this.state.itemDescription}
+              placeholder="Required"
               required
             />
           </div>
@@ -102,6 +106,7 @@ export class NewListing extends Component {
               className="pickup-location-input"
               name="pickupLocation"
               onChange={this.handleInputChange}
+              placeholder="Required"
               required
             />
           </div>
@@ -139,31 +144,32 @@ export class NewListing extends Component {
               />
               <DayPicker onDayClick={this.handleAvailableClick} />
             </div>
-            <div className="date-label">
-              <label
-                htmlFor="food-expiration-date"
-                className="food-expiration-label"
-              >
-                Expiration Date
-              </label>
-              <input
-                type="textbox"
-                className="food-expiration-date-input"
-                name="dateExpires"
-                disabled
-                value={
-                  this.state.dateExpires
-                    ? this.state.dateExpires.toLocaleDateString()
-                    : "Select Expiration Date"
-                }
-                onChange={this.handleInputChange}
-              />
-              <div className="col-sm">
+            <div className="col-sm">
+              <div className="date-label">
+                <label
+                  htmlFor="food-expiration-date"
+                  className="food-expiration-label"
+                >
+                  Expiration Date
+                </label>
+                <input
+                  type="textbox"
+                  className="food-expiration-date-input"
+                  name="dateExpires"
+                  disabled
+                  value={
+                    this.state.dateExpires
+                      ? this.state.dateExpires.toLocaleDateString()
+                      : "Select Expiration Date"
+                  }
+                  onChange={this.handleInputChange}
+                />
+
                 <DayPicker onDayClick={this.handleExpiresClick} />
               </div>
             </div>
           </div>
-          <br />
+
           <div className="checkbox-options row-personal">
             <label>
               Self Pickup:
@@ -232,5 +238,7 @@ export class NewListing extends Component {
     );
   }
 }
-const mapStateToProps = state => ({ userInfo: state.userInfo });
+const mapStateToProps = state => ({
+  userInfo: state.userInfo
+});
 export default connect(mapStateToProps)(NewListing);
