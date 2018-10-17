@@ -38,8 +38,8 @@ export class NewListing extends Component {
     //alert(JSON.stringify(this.state));
     this.state.itemDescription && this.state.pickupLocation
       ? this.props
-          .dispatch(postNewListing(this.state))
-          .then((window.location = "/"))
+        .dispatch(postNewListing(this.state))
+        .then((window.location = "/"))
       : alert("Please fill in required fields");
   }
 
@@ -64,7 +64,7 @@ export class NewListing extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div className="new-listing-container container">
         <form>
           <div className="userInfo row-personal">
             <label htmlFor="user-info" className="user-info-label">
@@ -171,6 +171,7 @@ export class NewListing extends Component {
           </div>
 
           <div className="checkbox-options row-personal">
+            <div className="red-text">Extra Options:<br /></div>
             <label>
               Self Pickup:
               <input

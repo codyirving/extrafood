@@ -29,57 +29,56 @@ export class NavBar extends Component {
   }
   render() {
     return (
-      <nav className="row container">
-        <div className="row-personal login-row-personal col-sm">
-          {isLoggedIn() ? (
-            <button
-              className="btn btn-danger log"
-              onClick={() => logout().then(this.props.history.push("/"))}
-            >
-              Log out{" "}
-            </button>
-          ) : (
-            <button className="btn btn-info log" onClick={() => login()}>
-              Log In
-            </button>
-          )}
-        </div>
-        <div className="row-personal col-sm">
+      <nav className="container">
+        <div className="row myrow">
+          <div className="user-welcome">
+            {isLoggedIn() && (
+              <div className="uinfo">
+                <div className="black-text">
+                  {" "}
+                  Welcome, {this.state.userInfo.name}
+                </div>
+                <div className="user-photo">
+                  <img src={this.state.userInfo.picture} alt="user-avatar" />{" "}
+                </div>
+              </div>
+            )}
+          </div>
           <div className="">
-            {isLoggedIn() &&
-              this.props.togglePage && (
-                <button
-                  className="btn btn-deep-orange"
-                  onClick={e => this.onClick(e)}
-                >
-                  Click to List Food
-                </button>
-              )}
-            {isLoggedIn() &&
-              !this.props.togglePage && (
-                <button
-                  className="btn btn-deep-orange"
-                  onClick={e => this.onClick(e)}
-                >
-                  Click to Claim Food
-                </button>
+            {isLoggedIn() ? (
+              <button
+                className="btn btn-danger log"
+                onClick={() => logout().then(this.props.history.push("/"))}
+              >
+                Log out{" "}
+              </button>
+            ) : (
+                <button className="btn btn-info log" onClick={() => login()}>
+                  Log In
+              </button>
               )}
           </div>
         </div>
-        <div className="user-welcome col-sm">
-          {isLoggedIn() && (
-            <div>
-              <div className="user-photo col-sm">
-                <img src={this.state.userInfo.picture} alt="user-avatar" />{" "}
-              </div>
-              <div className="col-sm white-text">
-                {" "}
-                Welcome, {this.state.userInfo.name}
-              </div>
-            </div>
-          )}
+        <div className="row toggle">
+          {isLoggedIn() &&
+            this.props.togglePage && (
+              <button
+                className="btn btn-deep-orange col-12"
+                onClick={e => this.onClick(e)}
+              >
+                Click to List Food
+              </button>
+            )}
+          {isLoggedIn() &&
+            !this.props.togglePage && (
+              <button
+                className="btn btn-deep-orange col-12"
+                onClick={e => this.onClick(e)}
+              >
+                Click to Claim Food
+              </button>
+            )}
         </div>
-        <div className="extrafood-logo" />
       </nav>
     );
   }
