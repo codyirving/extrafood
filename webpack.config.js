@@ -1,15 +1,15 @@
 const path = require('path');
 const dotenv = require('dotenv');
 module.exports = {
-   // call dotenv and it will return an Object with a parsed key 
-   const env = dotenv.config().parsed;
-  
-   // reduce it to a nice object, the same as before
-   const envKeys = Object.keys(env).reduce((prev, next) => {
-     prev[`process.env.${next}`] = JSON.stringify(env[next]);
-     return prev;
-   }, {});
- 
+  // call dotenv and it will return an Object with a parsed key 
+  const env = dotenv.config().parsed;
+
+  // reduce it to a nice object, the same as before
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+
   mode: "development", // "production" | "development" | "none"  // Chosen mode tells webpack to use its built-in optimizations accordingly.
   entry: "./src/App.js", // string | object | array  // defaults to ./src
   // Here the application starts executing
@@ -24,9 +24,11 @@ module.exports = {
     library: "MyLibrary", // string,
     // the name of the exported library
     libraryTarget: "umd", // universal module definition    // the type of the exported library
-    /* Advanced output configuration (click to show) */  },
+    /* Advanced output configuration (click to show) */
+},
   module: {
     // configuration regarding modules
+
     rules: [
       // rules for modules (configure loaders, parser options, etc.)
       {
@@ -71,27 +73,27 @@ module.exports = {
           }
         ]
       },
-      { oneOf: [ /* rules */ ] },
+      { oneOf: [ /* rules */] },
       // only use one of these nested rules
-      { rules: [ /* rules */ ] },
+      { rules: [ /* rules */] },
       // use all of these nested rules (combine with conditions to be useful)
-      { resource: { and: [ /* conditions */ ] } },
+      { resource: { and: [ /* conditions */] } },
       // matches only if all conditions are matched
-      { resource: { or: [ /* conditions */ ] } },
-      { resource: [ /* conditions */ ] },
+      { resource: { or: [ /* conditions */] } },
+      { resource: [ /* conditions */] },
       // matches if any condition is matched (default for arrays)
       { resource: { not: /* condition */ } }
       // matches if the condition is not matched
     ],
-    plugins: [  
-        // new webpack.HotModuleReplacementPlugin(),
-        // new NpmInstallPlugin({
-        //        save: true
-        //    }),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-     
+    plugins: [
+      // new webpack.HotModuleReplacementPlugin(),
+      // new NpmInstallPlugin({
+      //        save: true
+      //    }),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
     ]
 
-}
+  }
 
 }

@@ -5,6 +5,9 @@
   "dependencies": {
     "auth0-js": "^9.8.0",
     "dotenv": "^6.0.0",
+    "es6-promise": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "jwt-decode": "^2.2.0",
     "mdbootstrap": "^4.5.11",
     "moment": "^2.22.2",
@@ -39,5 +42,11 @@
     "eslint-config-prettier": "^2.10.0",
     "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }

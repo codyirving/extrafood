@@ -6,10 +6,10 @@ import Welcome from "./components/welcome";
 import store from "./store";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-
+import "isomorphic-fetch";
 configure({ adapter: new Adapter() });
 
-describe("<App />", () => {
+describe("<Root />", () => {
   it("renders without crashing", () => {
     console.log("start test");
     // const wrapper = shallow(<App />, {
