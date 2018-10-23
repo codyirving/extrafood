@@ -11,7 +11,7 @@ import { refData } from "./actions/index";
 
 export class App extends Component {
   componentDidMount() {
-    console.log("App component did mount");
+    //console.log("App component did mount");
 
     this.props.dispatch(refData());
   }

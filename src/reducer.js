@@ -20,7 +20,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   if (action.type === TOGGLE_MAIN_PAGE) {
-    console.log("toggling");
+    //console.log("toggling");
     return Object.assign({}, state, { togglePage: !state.togglePage });
   }
   if (action.type === REFRESH_DATA) {

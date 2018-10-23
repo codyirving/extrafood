@@ -3,13 +3,8 @@ import { connect } from "react-redux";
 import Listing from "../components/listing";
 
 export class Listings extends Component {
-  constructor(props) {
-    super(props);
-    console.log("listing props constructor: " + JSON.stringify(props));
-  }
-
   handleClaimClick = _id => {
-    console.log("handling claim click");
+    //console.log("handling claim click");
     this.props.onClaimed();
   };
 

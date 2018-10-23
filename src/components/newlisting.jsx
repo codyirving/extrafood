@@ -25,11 +25,11 @@ export class NewListing extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   handleExpiresClick(day) {
-    console.log("day: " + day);
+    //console.log("day: " + day);
     this.setState({ dateExpires: day });
   }
   handleAvailableClick(day) {
-    console.log("day: " + day);
+    //console.log("day: " + day);
     this.setState({ dateAvailable: day });
   }
 
@@ -38,8 +38,8 @@ export class NewListing extends Component {
     //alert(JSON.stringify(this.state));
     this.state.itemDescription && this.state.pickupLocation
       ? this.props
-        .dispatch(postNewListing(this.state))
-        .then((window.location = "/"))
+          .dispatch(postNewListing(this.state))
+          .then((window.location = "/"))
       : alert("Please fill in required fields");
   }
 
@@ -49,7 +49,7 @@ export class NewListing extends Component {
     let value = "";
     if (type === "textbox" || "textarea") {
       value = target.value;
-      console.log("found type");
+      //console.log("found type");
     }
     if (type === "checkbox") {
       value = target.checked;
@@ -171,7 +171,10 @@ export class NewListing extends Component {
           </div>
 
           <div className="checkbox-options row-personal">
-            <div className="red-text">Extra Options:<br /></div>
+            <div className="red-text">
+              Extra Options:
+              <br />
+            </div>
             <label>
               Self Pickup:
               <input

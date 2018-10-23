@@ -13,14 +13,9 @@ export class NavBar extends Component {
   }
 
   async componentDidMount() {
-    console.log("PROCESS.ENV:" + JSON.stringify(process.env));
+    //console.log("PROCESS.ENV:" + JSON.stringify(process.env));
     const idToken = getIdToken();
-    try {
-      console.log("ID TOKEN: " + JSON.stringify(decode(idToken)));
-      console.log("Got Token!: " + idToken);
-    } catch (e) {
-      console.log("error", e);
-    }
+
     if (idToken) {
       const userInfo = decode(idToken);
       this.setState({ userInfo: userInfo });
@@ -53,10 +48,10 @@ export class NavBar extends Component {
                 Log out{" "}
               </button>
             ) : (
-                <button className="btn btn-info log" onClick={() => login()}>
-                  Log In
+              <button className="btn btn-info log" onClick={() => login()}>
+                Log In
               </button>
-              )}
+            )}
           </div>
         </div>
         <div className="row toggle">

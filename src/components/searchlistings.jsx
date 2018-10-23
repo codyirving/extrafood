@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateSearchInput, updateFilteredList } from "../actions";
-import store from "../store";
+
 class SearchListings extends Component {
   constructor(props) {
     super(props);
@@ -9,14 +9,14 @@ class SearchListings extends Component {
   }
 
   handleChange = e => {
-    console.log("handling change " + e.target.value);
+    //console.log("handling change " + e.target.value);
     const searchInput = e.target.value;
     this.props.dispatch(updateSearchInput(searchInput));
     this.handleSearch(searchInput);
   };
 
   handleSearch = searchInput => {
-    console.log("handle searchInput: " + JSON.stringify(store.getState()));
+    //console.log("handle searchInput: " + JSON.stringify(store.getState()));
 
     const filteredList = this.props.listings.filter(listing => {
       return (
@@ -26,7 +26,7 @@ class SearchListings extends Component {
         listing.itemDescription
       );
     });
-    console.log("filterListLength", filteredList.length);
+    //console.log("filterListLength", filteredList.length);
     this.props.dispatch(updateFilteredList(filteredList));
   };
 

@@ -5,7 +5,7 @@ export const toggleMainPage = () => ({
 });
 export const REFRESH_DATA = "REFRESH_DATA";
 export const refreshData = newData => {
-  console.log("refreshData: newData: " + JSON.stringify(newData));
+  //console.log("refreshData: newData: " + JSON.stringify(newData));
   return {
     type: REFRESH_DATA,
     newData
@@ -14,8 +14,8 @@ export const refreshData = newData => {
 
 export function refData() {
   return (dispatch, getState) => {
-    console.log("getState before refData() : " + JSON.stringify(getState()));
-    console.log("access toke: " + getAccessToken());
+    //console.log("getState before refData() : " + JSON.stringify(getState()));
+    //console.log("access toke: " + getAccessToken());
     fetch(`http://${process.env.REACT_APP_API_HOST}/foodlistings/`, {
       method: "GET",
       headers: {
@@ -48,18 +48,17 @@ export function applyClaimedFilter() {
     fetch(`http://${process.env.REACT_APP_API_HOST}/foodlistings/`)
       .then(response => response.json())
       .then(data => {
-        console.log("(applyclaimed)Data: ", data);
+        //console.log("(applyclaimed)Data: ", data);
         newData = data;
-        console.log("(applyClaimed)NewData: ", newData);
+        //console.log("(applyClaimed)NewData: ", newData);
       })
       .then(dispatch(refreshData(newData)))
-      .then(console.log("apply clamied then: " + getState()))
       .then(dispatch(updateFilteredList(getState().newData)));
   };
 }
 
 export function claimListing(id, email) {
-  console.log("Email? " + email);
+  //console.log("Email? " + email);
   return (dispatch, getState) => {
     const payload = {
       _id: id,
@@ -126,9 +125,7 @@ export function postNewListing(newListing) {
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
         body: JSON.stringify(data) // body data type must match "Content-Type" header
-      })
-        .then(response => console.log(response)) // parses response to JSON
-        .catch(error => console.error(`Fetch Error =\n`, error));
+      }).catch(error => console.error(`Fetch Error =\n`, error));
     };
 
     return postData(
