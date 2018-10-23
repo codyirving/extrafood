@@ -4,7 +4,7 @@ React/Redux front end for ExtraFood API
 
 LIVE DEMO: [https://extrafood.codyi.mobi](https://extrafood.codyi.mobi "Demo")
 
-![Screenshot](https://i.imgur.com/DbrngQR.png "Screenshot")
+![Screenshot](https://i.imgur.com/KAYN2C8.png "Screenshot")
 ![Screenshot](https://i.imgur.com/mwzP5Ed.png "Screenshot")
 ![Screenshot](https://i.imgur.com/DbrngQR.png "Screenshot")
 
