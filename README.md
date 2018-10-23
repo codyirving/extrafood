@@ -2,7 +2,7 @@
 
 React/Redux front end for ExtraFood API
 
-LIVE DEMO: [https://extrafood.codyi.mobi](https://extrafood.codyi.mobi "Demo")
+LIVE DEMO: [http://extrafood.codyi.mobi](http://extrafood.codyi.mobi "Demo")
 
 ![Screenshot](https://i.imgur.com/KAYN2C8.png "Screenshot")
 ![Screenshot](https://i.imgur.com/mwzP5Ed.png "Screenshot")
@@ -49,7 +49,6 @@ Smoke tests only
 ## Deployment
 
 If deploying site publicly it is recommended to use a certificate to enable https.
-Demo deployed with https://letsencrypt.org/ CA.
 
 ## Built With
 
