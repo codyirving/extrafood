@@ -4,11 +4,9 @@ React/Redux front end for ExtraFood API
 
 LIVE DEMO: [https://extrafood.codyi.mobi](https://extrafood.codyi.mobi "Demo")
 
-
-![Screenshot]( "Screenshot")
-![Screenshot]( "Screenshot")
-![Screenshot]( "Screenshot")
-![Screenshot]( "Screenshot")
+![Screenshot](https://i.imgur.com/DbrngQR.png "Screenshot")
+![Screenshot](https://i.imgur.com/mwzP5Ed.png "Screenshot")
+![Screenshot](https://i.imgur.com/DbrngQR.png "Screenshot")
 
 ## Getting Started
 
@@ -27,11 +25,13 @@ git clone https://github.com/codyirving/extrafood.git
 ```
 
 Run npm install to install dependencies.
+
 ```
 npm install
 ```
 
 Run npm start to start application.
+
 ```
 npm start
 ```
@@ -41,6 +41,7 @@ npm start
 ```
 npm test
 ```
+
 ### Break down into tests
 
 Smoke tests only
@@ -52,14 +53,14 @@ Demo deployed with https://letsencrypt.org/ CA.
 
 ## Built With
 
-* [Node](node.js)
-* [Express](express)
-* [React](react)
-* [Redux](redux)
+- [Node](node.js)
+- [Express](express)
+- [React](react)
+- [Redux](redux)
 
 ## Authors
 
-* **Cody Irving** - *Initial work* - [codyirving](https://github.com/codyirving)
+- **Cody Irving** - _Initial work_ - [codyirving](https://github.com/codyirving)
 
 See also the list of [contributors](https://github.com/codyirving/gardenmanager/contributors) who participated in this project.
 
