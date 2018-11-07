@@ -3,6 +3,8 @@
 React/Redux front end for ExtraFood API
 
 LIVE DEMO: [http://extrafood.codyi.mobi](http://extrafood.codyi.mobi "Demo")
+DEMO LOGIN: demo@codyi.mobi
+DEMO PASSWORD: demo$123
 
 ![Screenshot](https://i.imgur.com/KAYN2C8.png "Screenshot")
 ![Screenshot](https://i.imgur.com/mwzP5Ed.png "Screenshot")
